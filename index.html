@@ -18,9 +18,7 @@
       min-height: 100vh;
     }
 
-    /* ═══════════════════════════════
-       DESKTOP WRAPPER
-    ═══════════════════════════════ */
+    
     .wrapper {
       max-width: 860px;
       margin: 0 auto;
@@ -37,9 +35,7 @@
       margin-bottom: 1.5rem;
     }
 
-    /* ═══════════════════════════════
-       DASHBOARD — 3 cards in a row
-    ═══════════════════════════════ */
+    
     .dashboard {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
@@ -67,9 +63,7 @@
     .num-green { color: #16a34a; }
     .num-red   { color: #dc2626; }
 
-    /* ═══════════════════════════════
-       SECTION BOX
-    ═══════════════════════════════ */
+    
     .section-box {
       background: #fff;
       border-radius: 12px;
@@ -93,9 +87,7 @@
       font-weight: 500;
     }
 
-    /* ═══════════════════════════════
-       TABS
-    ═══════════════════════════════ */
+    
     .tabs {
       display: flex;
       gap: 0.4rem;
@@ -117,10 +109,7 @@
     .tab-btn.active { background: #2563eb; color: #fff; font-weight: 600; }
     .tab-btn:not(.active):hover { background: #e2e8f0; }
 
-    /* ═══════════════════════════════
-       JOB CARDS — stacked, full-width
-       (one below another like screenshot)
-    ═══════════════════════════════ */
+    
     .jobs-list {
       display: flex;
       flex-direction: column;
@@ -154,7 +143,6 @@
     .company  { font-size: 1rem; font-weight: 700; color: #1e293b; }
     .position { font-size: 0.8rem; color: #475569; margin-top: 2px; }
 
-    /* Status pill */
     .status-pill {
       font-size: 0.6rem;
       font-weight: 700;
@@ -222,9 +210,7 @@
     }
     .del-btn:hover { color: #dc2626; background: #fef2f2; }
 
-    /* ═══════════════════════════════
-       EMPTY STATE — matches screenshot
-    ═══════════════════════════════ */
+    
     .empty-state {
       display: flex;
       flex-direction: column;
@@ -237,10 +223,7 @@
     .empty-title { font-size: 1rem; font-weight: 700; color: #1e293b; margin-bottom: 0.3rem; }
     .empty-sub   { font-size: 0.78rem; color: #94a3b8; }
 
-    /* ═══════════════════════════════
-       MOBILE — ≤ 600px
-       Cards get a card-style redesign
-    ═══════════════════════════════ */
+    
     @media (max-width: 600px) {
       .page-title { font-size: 1.3rem; margin-bottom: 1rem; }
 
@@ -258,7 +241,6 @@
       .tabs { gap: 0.3rem; }
       .tab-btn { padding: 0.28rem 0.75rem; font-size: 0.72rem; }
 
-      /* Mobile cards: compact with left accent bar */
       .job-card {
         padding: 0.9rem 1rem;
         border-left: 4px solid #2563eb;
@@ -271,10 +253,8 @@
       .company  { font-size: 0.88rem; }
       .position { font-size: 0.73rem; }
 
-      /* Hide description on mobile to keep cards compact */
       .card-desc { display: none; }
 
-      /* Stack meta info */
       .card-meta { font-size: 0.68rem; gap: 3px; }
 
       .act-btn { font-size: 0.62rem; padding: 4px 10px; }
@@ -284,9 +264,7 @@
       .empty-sub   { font-size: 0.72rem; }
     }
 
-    /* ═══════════════════════════════
-       SCROLLBAR
-    ═══════════════════════════════ */
+    
     ::-webkit-scrollbar { width: 5px; }
     ::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 3px; }
   </style>
