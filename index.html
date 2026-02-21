@@ -1,5 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
+<!DOCTYPE html>
+<html lang="en">
 <head>
   <meta charset="UTF-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
@@ -25,4 +27,267 @@
       padding: 2rem 1.25rem 4rem;
     }
 
- <head/>
+    /* ═══════════════════════════════
+       PAGE TITLE
+    ═══════════════════════════════ */
+    .page-title {
+      font-size: 1.75rem;
+      font-weight: 800;
+      color: #1e3a5f;
+      margin-bottom: 1.5rem;
+    }
+
+    /* ═══════════════════════════════
+       DASHBOARD — 3 cards in a row
+    ═══════════════════════════════ */
+    .dashboard {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1rem;
+      margin-bottom: 1.5rem;
+    }
+    .dash-card {
+      background: #fff;
+      border-radius: 10px;
+      padding: 1rem 1.25rem 0.9rem;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.07);
+    }
+    .dash-label {
+      font-size: 0.72rem;
+      font-weight: 500;
+      color: #64748b;
+      margin-bottom: 0.3rem;
+    }
+    .dash-num {
+      font-size: 1.85rem;
+      font-weight: 800;
+      line-height: 1;
+    }
+    .num-dark  { color: #1e3a5f; }
+    .num-green { color: #16a34a; }
+    .num-red   { color: #dc2626; }
+
+    /* ═══════════════════════════════
+       SECTION BOX
+    ═══════════════════════════════ */
+    .section-box {
+      background: #fff;
+      border-radius: 12px;
+      padding: 1.25rem 1.25rem 1.5rem;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.07);
+    }
+    .section-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 1rem;
+    }
+    .section-title {
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: #1e3a5f;
+    }
+    .jobs-badge {
+      font-size: 0.75rem;
+      color: #64748b;
+      font-weight: 500;
+    }
+
+    /* ═══════════════════════════════
+       TABS
+    ═══════════════════════════════ */
+    .tabs {
+      display: flex;
+      gap: 0.4rem;
+      margin-bottom: 1.25rem;
+      border-bottom: 1px solid #e2e8f0;
+      padding-bottom: 0.75rem;
+    }
+    .tab-btn {
+      padding: 0.3rem 1rem;
+      font-size: 0.78rem;
+      font-weight: 500;
+      border-radius: 6px;
+      border: none;
+      cursor: pointer;
+      transition: all 0.15s;
+      background: #f1f5f9;
+      color: #475569;
+    }
+    .tab-btn.active { background: #2563eb; color: #fff; font-weight: 600; }
+    .tab-btn:not(.active):hover { background: #e2e8f0; }
+
+    /* ═══════════════════════════════
+       JOB CARDS — stacked, full-width
+       (one below another like screenshot)
+    ═══════════════════════════════ */
+    .jobs-list {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+
+    .job-card {
+      border: 1px solid #e2e8f0;
+      border-radius: 10px;
+      padding: 1.1rem 1.25rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.55rem;
+      transition: box-shadow 0.2s;
+      animation: fadeUp 0.2s ease;
+      background: #fff;
+      position: relative;
+    }
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(8px); }
+      to   { opacity: 1; transform: none; }
+    }
+    .job-card:hover { box-shadow: 0 4px 16px rgba(0,0,0,0.09); }
+
+    .card-head {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 0.75rem;
+    }
+    .company  { font-size: 1rem; font-weight: 700; color: #1e293b; }
+    .position { font-size: 0.8rem; color: #475569; margin-top: 2px; }
+
+    /* Status pill */
+    .status-pill {
+      font-size: 0.6rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      padding: 4px 10px;
+      border-radius: 5px;
+      border: 1.5px solid;
+      flex-shrink: 0;
+      align-self: flex-start;
+    }
+    .pill-na       { background: #f1f5f9; color: #64748b;  border-color: #cbd5e1; }
+    .pill-interview{ background: #eff6ff; color: #2563eb;  border-color: #93c5fd; }
+    .pill-rejected { background: #fef2f2; color: #dc2626;  border-color: #fca5a5; }
+
+    .card-meta {
+      font-size: 0.74rem;
+      color: #64748b;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 4px;
+      align-items: center;
+    }
+    .sep { color: #cbd5e1; }
+
+    .card-desc {
+      font-size: 0.76rem;
+      color: #64748b;
+      line-height: 1.6;
+    }
+
+    .card-actions {
+      display: flex;
+      gap: 0.5rem;
+      align-items: center;
+      margin-top: 0.2rem;
+    }
+    .act-btn {
+      font-size: 0.68rem;
+      font-weight: 700;
+      padding: 5px 13px;
+      border-radius: 6px;
+      border: 1.5px solid;
+      cursor: pointer;
+      text-transform: uppercase;
+      letter-spacing: 0.03em;
+      transition: all 0.15s;
+    }
+    .act-interview { color: #16a34a; border-color: #16a34a; background: #f0fdf4; }
+    .act-interview.active, .act-interview:hover { background: #16a34a; color: #fff; }
+    .act-rejected  { color: #dc2626; border-color: #dc2626; background: #fef2f2; }
+    .act-rejected.active,  .act-rejected:hover  { background: #dc2626; color: #fff; }
+
+    .del-btn {
+      margin-left: auto;
+      background: none;
+      border: none;
+      cursor: pointer;
+      color: #cbd5e1;
+      padding: 5px;
+      border-radius: 5px;
+      display: flex;
+      align-items: center;
+      transition: color 0.15s, background 0.15s;
+    }
+    .del-btn:hover { color: #dc2626; background: #fef2f2; }
+
+    /* ═══════════════════════════════
+       EMPTY STATE — matches screenshot
+    ═══════════════════════════════ */
+    .empty-state {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 4rem 1rem;
+      text-align: center;
+    }
+    .empty-icon { width: 80px; height: 80px; margin-bottom: 1rem; }
+    .empty-title { font-size: 1rem; font-weight: 700; color: #1e293b; margin-bottom: 0.3rem; }
+    .empty-sub   { font-size: 0.78rem; color: #94a3b8; }
+
+    /* ═══════════════════════════════
+       MOBILE — ≤ 600px
+       Cards get a card-style redesign
+    ═══════════════════════════════ */
+    @media (max-width: 600px) {
+      .page-title { font-size: 1.3rem; margin-bottom: 1rem; }
+
+      .dashboard {
+        grid-template-columns: repeat(3, 1fr);
+        gap: 0.6rem;
+      }
+      .dash-card { padding: 0.75rem 0.9rem; }
+      .dash-label { font-size: 0.65rem; }
+      .dash-num { font-size: 1.4rem; }
+
+      .section-box { padding: 1rem 0.9rem 1.25rem; border-radius: 10px; }
+      .section-title { font-size: 1rem; }
+
+      .tabs { gap: 0.3rem; }
+      .tab-btn { padding: 0.28rem 0.75rem; font-size: 0.72rem; }
+
+      /* Mobile cards: compact with left accent bar */
+      .job-card {
+        padding: 0.9rem 1rem;
+        border-left: 4px solid #2563eb;
+        border-radius: 8px;
+        gap: 0.45rem;
+      }
+      .job-card[data-status="interview"] { border-left-color: #16a34a; }
+      .job-card[data-status="rejected"]  { border-left-color: #dc2626; }
+
+      .company  { font-size: 0.88rem; }
+      .position { font-size: 0.73rem; }
+
+      /* Hide description on mobile to keep cards compact */
+      .card-desc { display: none; }
+
+      /* Stack meta info */
+      .card-meta { font-size: 0.68rem; gap: 3px; }
+
+      .act-btn { font-size: 0.62rem; padding: 4px 10px; }
+
+      .empty-icon { width: 60px; height: 60px; }
+      .empty-title { font-size: 0.9rem; }
+      .empty-sub   { font-size: 0.72rem; }
+    }
+
+    /* ═══════════════════════════════
+       SCROLLBAR
+    ═══════════════════════════════ */
+    ::-webkit-scrollbar { width: 5px; }
+    ::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 3px; }
+  </style>
+</head>
