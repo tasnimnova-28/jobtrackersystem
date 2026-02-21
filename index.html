@@ -269,3 +269,44 @@
     ::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 3px; }
   </style>
 </head>
+<body>
+<div class="wrapper">
+
+  <!-- TITLE -->
+  <h1 class="page-title">Job Application Tracker</h1>
+
+  <!-- DASHBOARD -->
+  <div class="dashboard">
+    <div class="dash-card">
+      <div class="dash-label">Total</div>
+      <div class="dash-num num-dark" id="count-total">8</div>
+    </div>
+    <div class="dash-card">
+      <div class="dash-label">Interview</div>
+      <div class="dash-num num-green" id="count-interview">0</div>
+    </div>
+    <div class="dash-card">
+      <div class="dash-label">Rejected</div>
+      <div class="dash-num num-red" id="count-rejected">0</div>
+    </div>
+  </div>
+
+  <!-- SECTION BOX -->
+  <div class="section-box">
+    <div class="section-header">
+      <span class="section-title">Available Jobs</span>
+      <span class="jobs-badge" id="visible-count">8 jobs</span>
+    </div>
+
+    <!-- TABS -->
+    <div class="tabs">
+      <button class="tab-btn active" onclick="switchTab('all',this)">All</button>
+      <button class="tab-btn" onclick="switchTab('interview',this)">Interview</button>
+      <button class="tab-btn" onclick="switchTab('rejected',this)">Rejected</button>
+    </div>
+
+    <!-- JOB LIST -->
+    <div class="jobs-list" id="jobs-list"></div>
+  </div>
+
+</div><!-- end wrapper -->
