@@ -16,18 +16,14 @@
       min-height: 100vh;
     }
 
-    /* ═══════════════════════════════
-       DESKTOP WRAPPER
-    ═══════════════════════════════ */
+    
     .wrapper {
       max-width: 860px;
       margin: 0 auto;
       padding: 2rem 1.25rem 4rem;
     }
 
-    /* ═══════════════════════════════
-       PAGE TITLE
-    ═══════════════════════════════ */
+    
     .page-title {
       font-size: 1.75rem;
       font-weight: 800;
@@ -35,9 +31,7 @@
       margin-bottom: 1.5rem;
     }
 
-    /* ═══════════════════════════════
-       DASHBOARD — 3 cards in a row
-    ═══════════════════════════════ */
+    
     .dashboard {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
@@ -65,9 +59,7 @@
     .num-green { color: #16a34a; }
     .num-red   { color: #dc2626; }
 
-    /* ═══════════════════════════════
-       SECTION BOX
-    ═══════════════════════════════ */
+    
     .section-box {
       background: #fff;
       border-radius: 12px;
@@ -91,9 +83,7 @@
       font-weight: 500;
     }
 
-    /* ═══════════════════════════════
-       TABS
-    ═══════════════════════════════ */
+    
     .tabs {
       display: flex;
       gap: 0.4rem;
@@ -115,10 +105,7 @@
     .tab-btn.active { background: #2563eb; color: #fff; font-weight: 600; }
     .tab-btn:not(.active):hover { background: #e2e8f0; }
 
-    /* ═══════════════════════════════
-       JOB CARDS — stacked, full-width
-       (one below another like screenshot)
-    ═══════════════════════════════ */
+    
     .jobs-list {
       display: flex;
       flex-direction: column;
@@ -152,7 +139,6 @@
     .company  { font-size: 1rem; font-weight: 700; color: #1e293b; }
     .position { font-size: 0.8rem; color: #475569; margin-top: 2px; }
 
-    /* Status pill */
     .status-pill {
       font-size: 0.6rem;
       font-weight: 700;
@@ -220,9 +206,7 @@
     }
     .del-btn:hover { color: #dc2626; background: #fef2f2; }
 
-    /* ═══════════════════════════════
-       EMPTY STATE — matches screenshot
-    ═══════════════════════════════ */
+    
     .empty-state {
       display: flex;
       flex-direction: column;
@@ -235,10 +219,7 @@
     .empty-title { font-size: 1rem; font-weight: 700; color: #1e293b; margin-bottom: 0.3rem; }
     .empty-sub   { font-size: 0.78rem; color: #94a3b8; }
 
-    /* ═══════════════════════════════
-       MOBILE — ≤ 600px
-       Cards get a card-style redesign
-    ═══════════════════════════════ */
+    
     @media (max-width: 600px) {
       .page-title { font-size: 1.3rem; margin-bottom: 1rem; }
 
@@ -256,7 +237,6 @@
       .tabs { gap: 0.3rem; }
       .tab-btn { padding: 0.28rem 0.75rem; font-size: 0.72rem; }
 
-      /* Mobile cards: compact with left accent bar */
       .job-card {
         padding: 0.9rem 1rem;
         border-left: 4px solid #2563eb;
@@ -269,10 +249,8 @@
       .company  { font-size: 0.88rem; }
       .position { font-size: 0.73rem; }
 
-      /* Hide description on mobile to keep cards compact */
       .card-desc { display: none; }
 
-      /* Stack meta info */
       .card-meta { font-size: 0.68rem; gap: 3px; }
 
       .act-btn { font-size: 0.62rem; padding: 4px 10px; }
@@ -282,9 +260,7 @@
       .empty-sub   { font-size: 0.72rem; }
     }
 
-    /* ═══════════════════════════════
-       SCROLLBAR
-    ═══════════════════════════════ */
+    
     ::-webkit-scrollbar { width: 5px; }
     ::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 3px; }
   </style>
@@ -292,10 +268,8 @@
 <body>
 <div class="wrapper">
 
-  <!-- TITLE -->
   <h1 class="page-title">Job Application Tracker</h1>
 
-  <!-- DASHBOARD -->
   <div class="dashboard">
     <div class="dash-card">
       <div class="dash-label">Total</div>
@@ -311,28 +285,24 @@
     </div>
   </div>
 
-  <!-- SECTION BOX -->
   <div class="section-box">
     <div class="section-header">
       <span class="section-title">Available Jobs</span>
       <span class="jobs-badge" id="visible-count">8 jobs</span>
     </div>
 
-    <!-- TABS -->
     <div class="tabs">
       <button class="tab-btn active" onclick="switchTab('all',this)">All</button>
       <button class="tab-btn" onclick="switchTab('interview',this)">Interview</button>
       <button class="tab-btn" onclick="switchTab('rejected',this)">Rejected</button>
     </div>
 
-    <!-- JOB LIST -->
     <div class="jobs-list" id="jobs-list"></div>
   </div>
 
-</div><!-- end wrapper -->
+</div>
 
 <script>
-/* ─── DATA ─────────────────────────────────────────────────────────── */
 let jobs = [
   {
     id: 1,
@@ -418,7 +388,6 @@ let jobs = [
 
 let currentTab = 'all';
 
-/* ─── HELPERS ───────────────────────────────────────────────────────── */
 function pillClass(s) {
   return s === 'interview' ? 'pill-interview'
        : s === 'rejected'  ? 'pill-rejected'
@@ -430,7 +399,6 @@ function pillLabel(s) {
        : 'Not Applied';
 }
 
-/* ─── COUNTS ────────────────────────────────────────────────────────── */
 function updateCounts() {
   const total = jobs.length;
   const intv  = jobs.filter(j => j.status === 'interview').length;
@@ -447,24 +415,14 @@ function updateCounts() {
     vis + (vis === 1 ? ' job' : ' jobs');
 }
 
-/* ─── EMPTY STATE ───────────────────────────────────────────────────── */
 function emptyHTML() {
   return `
     <div class="empty-state">
-      <svg class="empty-icon" viewBox="0 0 80 80" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <rect x="10" y="8" width="44" height="58" rx="4" fill="#bfdbfe"/>
-        <path d="M44 8v16h16" fill="none"/>
-        <path d="M44 8l16 16H44V8z" fill="#93c5fd"/>
-        <rect x="18" y="34" width="28" height="3" rx="1.5" fill="#60a5fa"/>
-        <rect x="18" y="42" width="22" height="3" rx="1.5" fill="#60a5fa"/>
-        <rect x="18" y="50" width="16" height="3" rx="1.5" fill="#60a5fa"/>
-      </svg>
+      <img src="jobs.png" class="empty-icon" alt="No jobs available"/>
       <div class="empty-title">No jobs available</div>
       <p class="empty-sub">Check back soon for new job opportunities</p>
     </div>`;
 }
-
-/* ─── RENDER ────────────────────────────────────────────────────────── */
 function render() {
   const list     = document.getElementById('jobs-list');
   const filtered = currentTab === 'all'
@@ -522,11 +480,9 @@ function render() {
   updateCounts();
 }
 
-/* ─── ACTIONS ───────────────────────────────────────────────────────── */
 function setStatus(id, newStatus) {
   const job = jobs.find(j => j.id === id);
   if (!job) return;
-  // Toggle: clicking the same button resets to not-applied
   job.status = job.status === newStatus ? 'not-applied' : newStatus;
   render();
 }
@@ -550,7 +506,6 @@ function switchTab(tab, btn) {
   render();
 }
 
-/* ─── INIT ──────────────────────────────────────────────────────────── */
 render();
 </script>
 </body>
