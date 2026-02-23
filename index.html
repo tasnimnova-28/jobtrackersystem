@@ -8,7 +8,7 @@
   <title>Job Application Tracker</title>
   <script src="https://cdn.tailwindcss.com"></script>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet"/>
-  <style>
+<style>
     * { box-sizing: border-box; margin: 0; padding: 0; }
 
     body {
@@ -25,9 +25,7 @@
       padding: 2rem 1.25rem 4rem;
     }
 
-    /* ═══════════════════════════════
-       PAGE TITLE
-    ═══════════════════════════════ */
+    
     .page-title {
       font-size: 1.75rem;
       font-weight: 800;
@@ -267,15 +265,13 @@
     
     ::-webkit-scrollbar { width: 5px; }
     ::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 3px; }
-  </style>
+  </style>*/
 </head>
 <body>
 <div class="wrapper">
 
-  <!-- TITLE -->
   <h1 class="page-title">Job Application Tracker</h1>
 
-  <!-- DASHBOARD -->
   <div class="dashboard">
     <div class="dash-card">
       <div class="dash-label">Total</div>
@@ -291,22 +287,229 @@
     </div>
   </div>
 
-  <!-- SECTION BOX -->
   <div class="section-box">
     <div class="section-header">
       <span class="section-title">Available Jobs</span>
       <span class="jobs-badge" id="visible-count">8 jobs</span>
     </div>
 
-    <!-- TABS -->
     <div class="tabs">
       <button class="tab-btn active" onclick="switchTab('all',this)">All</button>
       <button class="tab-btn" onclick="switchTab('interview',this)">Interview</button>
       <button class="tab-btn" onclick="switchTab('rejected',this)">Rejected</button>
     </div>
 
-    <!-- JOB LIST -->
     <div class="jobs-list" id="jobs-list"></div>
   </div>
 
 </div><!-- end wrapper -->
+<script>
+let jobs = [
+  {
+    id: 1,
+    company: "Mobile First Corp",
+    position: "React Native Developer",
+    location: "Remote",
+    type: "Full-time",
+    salary: "$130,000 – $175,000",
+    status: "not-applied",
+    desc: "Build cross-platform mobile applications using React Native. Work on products used by millions of users worldwide and contribute to the future of mobile development."
+  },
+  {
+    id: 2,
+    company: "WebFlow Agency",
+    position: "Web Designer & Developer",
+    location: "Los Angeles, CA",
+    type: "Part-time",
+    salary: "$80,000 – $120,000",
+    status: "not-applied",
+    desc: "Create stunning web experiences for high-profile clients. Requires a strong portfolio and experience with modern web design trends and the Webflow platform."
+  },
+  {
+    id: 3,
+    company: "DataViz Solutions",
+    position: "Data Visualization Specialist",
+    location: "Boston, MA",
+    type: "Full-time",
+    salary: "$125,000 – $165,000",
+    status: "not-applied",
+    desc: "Transform complex datasets into compelling visual stories. Required skills include D3.js, React, and strong analytical thinking to support business intelligence."
+  },
+  {
+    id: 4,
+    company: "CloudFirst Inc",
+    position: "Backend Developer",
+    location: "Seattle, WA",
+    type: "Full-time",
+    salary: "$140,000 – $180,000",
+    status: "not-applied",
+    desc: "Design and maintain scalable backend systems using Python and AWS. Work with modern DevOps practices and help shape the company's cloud infrastructure strategy."
+  },
+  {
+    id: 5,
+    company: "Innovation Labs",
+    position: "UI/UX Engineer",
+    location: "Austin, TX",
+    type: "Full-time",
+    salary: "$110,000 – $150,000",
+    status: "not-applied",
+    desc: "Create beautiful, functional interfaces for a suite of digital products. Strong design skills and frontend development experience with React are required."
+  },
+  {
+    id: 6,
+    company: "MegaCorp Solutions",
+    position: "JavaScript Developer",
+    location: "New York, NY",
+    type: "Full-time",
+    salary: "$130,000 – $170,000",
+    status: "not-applied",
+    desc: "Build enterprise-grade applications using JavaScript and modern frameworks. We offer competitive salary, full health insurance, and professional development support."
+  },
+  {
+    id: 7,
+    company: "StartupXYZ",
+    position: "Full Stack Engineer",
+    location: "Remote",
+    type: "Full-time",
+    salary: "$120,000 – $160,000",
+    status: "not-applied",
+    desc: "Join a fast-growing startup building a core platform product. Experience with Node.js and React required. Great benefits and a meaningful equity package included."
+  },
+  {
+    id: 8,
+    company: "TechCorp Industries",
+    position: "Senior Frontend Developer",
+    location: "San Francisco, CA",
+    type: "Full-time",
+    salary: "$130,000 – $178,000",
+    status: "not-applied",
+    desc: "Build scalable web applications using React and TypeScript. Work with a talented engineering team on cutting-edge projects that have a real impact on users."
+  }
+];
+
+let currentTab = 'all';
+
+function pillClass(s) {
+  return s === 'interview' ? 'pill-interview'
+       : s === 'rejected'  ? 'pill-rejected'
+       : 'pill-na';
+}
+function pillLabel(s) {
+  return s === 'interview' ? 'Interview'
+       : s === 'rejected'  ? 'Rejected'
+       : 'Not Applied';
+}
+
+function updateCounts() {
+  const total = jobs.length;
+  const intv  = jobs.filter(j => j.status === 'interview').length;
+  const rej   = jobs.filter(j => j.status === 'rejected').length;
+
+  document.getElementById('count-total').textContent     = total;
+  document.getElementById('count-interview').textContent = intv;
+  document.getElementById('count-rejected').textContent  = rej;
+
+  const vis = currentTab === 'all'       ? total
+            : currentTab === 'interview' ? intv
+            : rej;
+  document.getElementById('visible-count').textContent =
+    vis + (vis === 1 ? ' job' : ' jobs');
+}
+
+function emptyHTML() {
+  return `
+    <div class="empty-state">
+      <img src="jobs.png" class="empty-icon" alt="No jobs available"/>
+      <div class="empty-title">No jobs available</div>
+      <p class="empty-sub">Check back soon for new job opportunities</p>
+    </div>`;
+}
+
+function render() {
+  const list     = document.getElementById('jobs-list');
+  const filtered = currentTab === 'all'
+    ? jobs
+    : jobs.filter(j => j.status === currentTab);
+
+  if (filtered.length === 0) {
+    list.innerHTML = emptyHTML();
+    updateCounts();
+    return;
+  }
+
+  list.innerHTML = filtered.map(job => `
+    <div class="job-card" id="card-${job.id}" data-status="${job.status}">
+
+      <div class="card-head">
+        <div>
+          <div class="company">${job.company}</div>
+          <div class="position">${job.position}</div>
+        </div>
+        <span class="status-pill ${pillClass(job.status)}">${pillLabel(job.status)}</span>
+      </div>
+
+      <div class="card-meta">
+        <span>${job.location}</span>
+        <span class="sep">•</span>
+        <span>${job.type}</span>
+        <span class="sep">•</span>
+        <span>${job.salary}</span>
+      </div>
+
+      <p class="card-desc">${job.desc}</p>
+
+      <div class="card-actions">
+        <button
+          class="act-btn act-interview${job.status === 'interview' ? ' active' : ''}"
+          onclick="setStatus(${job.id}, 'interview')"
+        >Interview</button>
+        <button
+          class="act-btn act-rejected${job.status === 'rejected' ? ' active' : ''}"
+          onclick="setStatus(${job.id}, 'rejected')"
+        >Rejected</button>
+        <button class="del-btn" onclick="delJob(${job.id})" title="Delete job">
+          <svg width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+            <polyline points="3 6 5 6 21 6"/>
+            <path d="M19 6l-1 14a2 2 0 0 1-2 2H8a2 2 0 0 1-2-2L5 6"/>
+            <path d="M10 11v6M14 11v6M9 6V4a1 1 0 0 1 1-1h4a1 1 0 0 1 1 1v2"/>
+          </svg>
+        </button>
+      </div>
+
+    </div>
+  `).join('');
+
+  updateCounts();
+}
+
+function setStatus(id, newStatus) {
+  const job = jobs.find(j => j.id === id);
+  if (!job) return;
+  job.status = job.status === newStatus ? 'not-applied' : newStatus;
+  render();
+}
+
+function delJob(id) {
+  const card = document.getElementById('card-' + id);
+  if (!card) return;
+  card.style.transition = 'opacity 0.18s, transform 0.18s';
+  card.style.opacity    = '0';
+  card.style.transform  = 'scale(0.97)';
+  setTimeout(() => {
+    jobs = jobs.filter(j => j.id !== id);
+    render();
+  }, 180);
+}
+
+function switchTab(tab, btn) {
+  currentTab = tab;
+  document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  render();
+}
+
+render();
+</script>
+</body>
+</html>
+
